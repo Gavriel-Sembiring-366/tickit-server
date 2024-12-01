@@ -13,12 +13,12 @@ app.use(express.json())
 app.use(cors())
 
 app.get('/', (req, res) => {
-  res.send('Volatoon api!')
+  res.send('Tickit api!')
 })
 
 app.use('/api/auth/', authController)
 app.use('/api/', userController)
 
 app.listen(port, () => {
-  console.log(`BreadFinance is listening on port ${port}`)
+  console.log(`Tickit is listening on port ${port}`)
 })
