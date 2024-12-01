@@ -17,7 +17,7 @@ const validate = (req, res, next) => {
 
     if (!validEmail(email)) {
         return res.status(400).json({
-            message: 'Invalid Email ' + email,
+            message: 'Invalid Email ' + userName,
             status: 400,
         });
     }
