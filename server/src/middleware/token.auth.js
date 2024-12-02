@@ -1,4 +1,7 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function authenticateToken(req, res, next) {
     try {
@@ -8,12 +11,12 @@ function authenticateToken(req, res, next) {
             return res.status(401).json({ error: "Token is required" });
         }
 
-        // Ensure JWT_SECRET is defined
-        if (!process.env.JWT_SECRET) {
+        const secret = process.env.JWT_SECRET;
+        if (!secret) {
             throw new Error("JWT_SECRET is not defined. Please set it in your environment variables.");
         }
 
-        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        jwt.verify(token, secret, (err, user) => {
             if (err) {
                 return res.status(403).json({ error: "Invalid or expired token" });
             }
@@ -21,7 +24,7 @@ function authenticateToken(req, res, next) {
             next();
         });
     } catch (error) {
-        console.error(error.message); // Log error for debugging
+        console.error('Error during token authentication:', error.message);
         return res.status(500).json({ error: error.message });
     }
 }
