@@ -1,21 +1,29 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
+function authenticateToken(req, res, next) {
+    try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ error: "Token is required" });
+        }
 
-function authenticateToken(req, res, next){
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-    if (token == null) throw new Error("Token Null");
-    
-    // console.log(token)
-    // console.log("asdd")
-    // console.log(process.env.JWT_SECRET)
+        // Ensure JWT_SECRET is defined
+        if (!process.env.JWT_SECRET) {
+            throw new Error("JWT_SECRET is not defined. Please set it in your environment variables.");
+        }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403)
-        // console.log(user)
-        req.user = user
-        next()
-    })
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            if (err) {
+                return res.status(403).json({ error: "Invalid or expired token" });
+            }
+            req.user = user; // Attach user to request
+            next();
+        });
+    } catch (error) {
+        console.error(error.message); // Log error for debugging
+        return res.status(500).json({ error: error.message });
+    }
 }
 
 export default authenticateToken;
