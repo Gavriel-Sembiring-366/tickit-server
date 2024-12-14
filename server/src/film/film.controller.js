@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import addFilm from './film.service.js';
+import {addFilm} from './film.service.js';
 const router = Router();
 
 router.post("/film", async (req, res) => {

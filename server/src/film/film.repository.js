@@ -38,7 +38,7 @@ const findFilmsByJudulDb = async (judul) => {
     return films;
 };
 
-export default{ 
+export{ 
     findFilmByIdDb,
     addFilmDb,
     findFilmsByJudulDb,
