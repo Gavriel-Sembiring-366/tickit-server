@@ -14,11 +14,23 @@ datasource db {
 }
 
 model User {
-  user_id     String        @id @default(uuid()) @db.Uuid
-  username    String        @unique
-  email       String        @unique
-  password    String
-  name        String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  user_id       String        @id @default(uuid()) @db.Uuid
+  username      String        @unique
+  email         String        @unique
+  password      String
+  name          String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Film {
+  film_id       int           @id
+  judul         String?  
+  genre         String?  
+  durasi        Int?     
+  sinopsis      String?  
+  sutradara     String?  
+  tahun_rilis   Int?     
+  umur_rating   String?  
+  createdAt     DateTime      @default(now())
 }
