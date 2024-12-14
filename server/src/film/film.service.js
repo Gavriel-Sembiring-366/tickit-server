@@ -8,6 +8,6 @@ const getFilmDataByJudul = async (judul) => {
 
 
 const addFilm = async (filmData) => {
-    await addFilmDb(userData)
+    await addFilmDb(filmData)
 }
 export{ getFilmDataByJudul, addFilm}
