@@ -39,7 +39,7 @@ const findFilmsByJudulDb = async (judul) => {
 };
 
 const getAllFilmsDB = async ()=>{
-    const films = await prisma.film.findmany();
+    const films = await prisma.film.findMany();
     return films
 }
 
