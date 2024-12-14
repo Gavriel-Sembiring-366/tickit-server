@@ -10,4 +10,4 @@ const getFilmDataByJudul = async (judul) => {
 const addFilm = async (filmData) => {
     await addFilmDb(filmData)
 }
-export{ getFilmDataByJudul, addFilm}
+export default { getFilmDataByJudul, addFilm}
