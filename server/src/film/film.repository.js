@@ -13,7 +13,7 @@ const addFilmDb = async (filmData) => {
     const film = await prisma.film.create({
         data: {
             judul: filmData.judul,
-            genre: filmData.genre,  
+            genre_film: filmData.genre_film,  
             durasi: filmData.durasi,
             sinopsis: filmData.sinopsis,
             sutradara: filmData.sutradara,
