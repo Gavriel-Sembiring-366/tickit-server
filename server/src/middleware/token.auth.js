@@ -16,6 +16,7 @@ function authenticateToken(req, res, next) {
             throw new Error("JWT_SECRET is not defined. Please set it in your environment variables.");
         }
 
+        
         jwt.verify(token, secret, (err, user) => {
             if (err) {
                 return res.status(403).json({ error: "Invalid or expired token" });
