@@ -24,7 +24,7 @@ model User {
 }
 
 model Film {
-  film_id       Int           @id @default(uuid()) @db.Uuid
+  film_id       String           @id @default(uuid()) @db.Uuid
   judul         String?  
   genre         String?  
   durasi        Int?     
