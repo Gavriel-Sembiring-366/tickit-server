@@ -1,5 +1,4 @@
-import findFilmsByJudulDb from "./film.repository.js"
-import {addFilmDb} from "./film.repository.js"
+import { findFilmsByJudulDb, addFilmDb } from "./film.repository.js";
 
 const getFilmDataByJudul = async (judul) => {
     const filmData = await findFilmsByJudulDb(judul)
