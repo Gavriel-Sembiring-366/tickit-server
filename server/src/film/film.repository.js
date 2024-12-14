@@ -38,8 +38,14 @@ const findFilmsByJudulDb = async (judul) => {
     return films;
 };
 
+const getAllFilmsDB = async ()=>{
+    const films = await prisma.film.findmany();
+    return films
+}
+
 export{ 
     findFilmByIdDb,
     addFilmDb,
     findFilmsByJudulDb,
+    getAllFilmsDB,
 }
