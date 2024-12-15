@@ -22,10 +22,6 @@ router.post('/image', async (req, res) => {
             }
         );
 
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message);
-        }
 
         const data = await response.json();
 
@@ -35,7 +31,6 @@ router.post('/image', async (req, res) => {
             data,
         });
     } catch (err) {
-        console.error('Error uploading image:', err.message);
         res.status(500).json({
             status: 500,
             message: `Failed to upload image: ${err.message}`,
@@ -57,10 +52,6 @@ router.get('/get-all-image', async (req, res) => {
             }
         );
 
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message);
-        }
 
         const data = await response.json();
 
@@ -75,7 +66,6 @@ router.get('/get-all-image', async (req, res) => {
             data: publicUrls,
         });
     } catch (err) {
-        console.error('Error fetching images:', err.message);
         res.status(500).json({
             status: 500,
             message: `Failed to fetch images: ${err.message}`,
