@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addImage, getAllImage } from './image.service.js';
+import { getAllImage } from './image.service.js';
 const router = Router();
 
 

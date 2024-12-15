@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 
-
 export const getAllImage = async () => {
     const bucketName = 'movie_images'; // Specify your bucket name
 
