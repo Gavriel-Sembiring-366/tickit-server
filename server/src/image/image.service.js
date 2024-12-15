@@ -39,7 +39,7 @@ router.post('/image', async (req, res) => {
 });
 
 router.get('/get-all-image', async (req, res) => {
-    const bucketName = 'movie-images'; // Replace with your bucket name
+    const bucketName = 'movie_images'; // Replace with your bucket name
 
     try {
         const response = await fetch(
