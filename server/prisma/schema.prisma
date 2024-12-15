@@ -23,14 +23,45 @@ model User {
   updatedAt     DateTime      @updatedAt
 }
 
+
+model Bangku {
+  bangku_id         String        @id @default(uuid()) @db.Uuid
+  nomor_bangku      String?  
+  createdAt         DateTime      @default(now())
+}
+
+
+model Jadwal {
+  jadwal_id    String   @id @default(uuid()) @db.Uuid
+  film_id      String
+  bioskop_id   String
+  waktu_tayang DateTime
+  createdAt    DateTime @default(now())
+
+  Film      Film     @relation(fields: [film_id], references: [film_id])
+  Bioskop   Bioskop  @relation(fields: [bioskop_id], references: [bioskop_id])
+}
+
 model Film {
-  film_id       String           @id @default(uuid()) @db.Uuid
-  judul         String?  
-  genre_film    String?  
-  durasi        Int?     
-  sinopsis      String?  
-  sutradara     String?  
-  tahun_rilis   Int?     
-  umur_rating   String?  
-  createdAt     DateTime      @default(now())
+  film_id      String   @id @default(uuid()) @db.Uuid
+  judul        String?
+  genre_film   String?
+  durasi       Int?
+  sinopsis     String?
+  sutradara    String?
+  tahun_rilis  Int?
+  umur_rating  String?
+  createdAt    DateTime @default(now())
+
+  Jadwal Jadwal[]
+}
+
+model Bioskop {
+  bioskop_id   String   @id @default(uuid()) @db.Uuid
+  nama_bioskop String?
+  alamat       String?
+  kapasitas    Int?
+  createdAt    DateTime @default(now())
+
+  Jadwal Jadwal[]
 }

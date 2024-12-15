@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {addFilm, getAllFilms} from './film.service.js';
+import {addFilm, getAllFilm} from './film.service.js';
 const router = Router();
 
 router.post("/film", async (req, res) => {
@@ -22,7 +22,7 @@ router.post("/film", async (req, res) => {
 
 router.get("/get-all-films", async (req, res) => {
     try {
-        const allFilms = await getAllFilms(); // Assuming this function fetches the films from the DB
+        const allFilms = await getAllFilm(); // Assuming this function fetches the films from the DB
 
         res.status(200).json({
             status: 200,

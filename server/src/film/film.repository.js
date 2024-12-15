@@ -25,7 +25,7 @@ const addFilmDb = async (filmData) => {
     return film
 }
 
-const findFilmsByJudulDb = async (judul) => {
+const findFilmByJudulDb = async (judul) => {
     const films = await prisma.film.findMany({
         where: {
             judul: {
@@ -38,7 +38,7 @@ const findFilmsByJudulDb = async (judul) => {
     return films;
 };
 
-const getAllFilmsDB = async ()=>{
+const getAllFilmDB = async ()=>{
     const films = await prisma.film.findMany();
     return films
 }
@@ -46,6 +46,6 @@ const getAllFilmsDB = async ()=>{
 export{ 
     findFilmByIdDb,
     addFilmDb,
-    findFilmsByJudulDb,
-    getAllFilmsDB,
+    findFilmByJudulDb,
+    getAllFilmDB,
 }
