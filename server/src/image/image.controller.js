@@ -21,11 +21,12 @@ router.get("/get-all-image", async (req, res) => {
     }
 });
 
-
 router.get("/get-image-by-id", async (req, res) => {
     try {
-        const { id } = req.query;
+        // Try to extract 'id' from query or body
+        const id = req.query.id || req.body?.id;
 
+        // Validate the 'id' parameter
         if (!id) {
             return res.status(400).json({
                 status: 400,
@@ -33,6 +34,7 @@ router.get("/get-image-by-id", async (req, res) => {
             });
         }
 
+        // Call the function to fetch the image by ID
         const image = await getImageById(id);
 
         res.setHeader('Content-Type', image.contentType);
@@ -44,6 +46,5 @@ router.get("/get-image-by-id", async (req, res) => {
         });
     }
 });
-
 
 export default router;
