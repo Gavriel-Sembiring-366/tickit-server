@@ -27,7 +27,6 @@ export const getAllImage = async () => {
     }));
 };
 
-
 export const getImageById = async (id) => {
     const bucketName = 'movie_images';
     if (!id) {
@@ -49,9 +48,13 @@ export const getImageById = async (id) => {
         throw new Error(`Failed to fetch image: ${error.message}`);
     }
 
-    // Construct public URL
+    // Retrieve the binary data of the image
+    const imageBuffer = await response.buffer();
+
+    // Return the image data
     return {
         name: id,
-        url: `${process.env.SUPABASE_URL}/storage/v1/object/public/${bucketName}/${id}`,
+        data: imageBuffer,
+        contentType: response.headers.get('content-type'),
     };
 };
