@@ -21,11 +21,12 @@ router.get("/get-all-image", async (req, res) => {
         });
     }
 });
-
 router.get("/get-image-by-id", async (req, res) => {
     try {
-        const { id } = req.query;
+        // Extract 'id' from the request body
+        const { id } = req.body;
 
+        // Validate the 'id' parameter
         if (!id) {
             return res.status(400).json({
                 status: 400,
@@ -33,6 +34,7 @@ router.get("/get-image-by-id", async (req, res) => {
             });
         }
 
+        // Call the function to fetch the image by ID
         const image = await getImageById(id);
 
         // Respond with the image data
@@ -42,6 +44,7 @@ router.get("/get-image-by-id", async (req, res) => {
             data: image,
         });
     } catch (err) {
+        // Handle errors
         res.status(500).json({
             status: 500,
             message: err.message,
