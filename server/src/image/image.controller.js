@@ -22,4 +22,31 @@ router.get("/get-all-image", async (req, res) => {
     }
 });
 
+router.get("/get-image-by-id", async (req, res) => {
+    try {
+        const { id } = req.query;
+
+        if (!id) {
+            return res.status(400).json({
+                status: 400,
+                message: "Image ID is required",
+            });
+        }
+
+        const image = await getImageById(id);
+
+        // Respond with the image data
+        res.status(200).json({
+            status: 200,
+            message: "Get image successfully",
+            data: image,
+        });
+    } catch (err) {
+        res.status(500).json({
+            status: 500,
+            message: err.message,
+        });
+    }
+});
+
 export default router;
