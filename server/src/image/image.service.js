@@ -4,7 +4,7 @@ export const getAllImage = async () => {
     const bucketName = 'movie_images'; // Specify your bucket name
 
     const response = await fetch(
-        `${process.env.SUPABASE_URL}/storage/v1/object/list/${bucketName}`,
+        `${process.env.SUPABASE_URL}/storage/v1/object/public/${bucketName}`,
         {
             method: 'GET',
             headers: {
