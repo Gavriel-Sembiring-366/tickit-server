@@ -48,7 +48,7 @@ const getAllFilmDB = async ()=>{
 const getFilmsByStatusDB = async (status)=>{
     const films = await prisma.film.findMany({
         where: {
-            status: {
+            status_film: {
                 contains: status,
                 mode: "insensitive"
             }

@@ -14,8 +14,8 @@ const getAllFilm = async()=>{
     return films
 }
 
-const getFilmsByStatus = async (judul) => {
-    const filmData = await getFilmsByStatusDB(judul)
+const getFilmsByStatus = async (status) => {
+    const filmData = await getFilmsByStatusDB(status)
     return filmData
 }
 
