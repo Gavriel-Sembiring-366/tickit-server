@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {addFilm, getAllFilm, getFilmsByGenre} from './film.service.js';
+import {addFilm, getAllFilm, getFilmsByStatus} from './film.service.js';
 const router = Router();
 
 router.post("/film", async (req, res) => {
@@ -39,17 +39,17 @@ router.get("/get-all-films", async (req, res) => {
 
 
 
-router.get("/get-film-by-genre", async (req, res) => {
+router.get("/get-film-by-status", async (req, res) => {
     try {
-        const { genre } = req.query;
-        const filmData = await getFilmsByGenre(genre)
+        const { status } = req.query;
+        const filmData = await getFilmsByStatus(status)
 
         res.status(200).json({
             status: 200,
             message: "Successfully get user data",
             userData: {
                 judul: filmData.judul,
-                genre_film: filmData.genre_film,  
+                status_film: filmData.status_film,  
                 durasi: filmData.durasi,
                 sinopsis: filmData.sinopsis,
                 sutradara: filmData.sutradara,

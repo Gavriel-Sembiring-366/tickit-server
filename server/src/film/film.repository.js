@@ -45,11 +45,11 @@ const getAllFilmDB = async ()=>{
     return films
 }
 
-const getFilmsByGenreDB = async (genre)=>{
+const getFilmsByStatusDB = async (status)=>{
     const films = await prisma.film.findMany({
         where: {
-            genre: {
-                contains: genre,
+            status: {
+                contains: status,
                 mode: "insensitive"
             }
         }
@@ -63,5 +63,5 @@ export{
     addFilmDb,
     findFilmByJudulDb,
     getAllFilmDB,
-    getFilmsByGenreDB,
+    getFilmsByStatusDB,
 }
