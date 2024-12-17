@@ -7,6 +7,7 @@ import filmController from "./film/film.controller.js"
 import bioskopController from "./bioskop/bioskop.controller.js"
 import jadwalController from "./jadwal/jadwal.controller.js"
 import imageController from "./image/image.controller.js"
+import bangkutersediaController from "./bangkuTersedia/bangkuTersedia.controller.js"
 
 // import unknownEndPoint from './middleware/unknownEndpoint.js';
 const app = express()
@@ -26,6 +27,7 @@ app.use('/api/', filmController)
 app.use('/api/', bioskopController)
 app.use('/api/', jadwalController)
 app.use('/api/', imageController)
+app.use('/api/', bangkutersediaController)
 
 app.listen(port, () => {
   console.log(`Tickit is listening on port ${port}`)
