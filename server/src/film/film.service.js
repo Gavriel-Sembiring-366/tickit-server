@@ -1,4 +1,4 @@
-import { findFilmByJudulDb, addFilmDb, getAllFilmDB, getFilmsByGenreDB } from "./film.repository.js";
+import { findFilmByJudulDb, addFilmDb, getAllFilmDB, getFilmsByStatusDB } from "./film.repository.js";
 
 const getFilmDataByJudul = async (judul) => {
     const filmData = await findFilmByJudulDb(judul)
@@ -14,9 +14,9 @@ const getAllFilm = async()=>{
     return films
 }
 
-const getFilmsByGenre = async (judul) => {
-    const filmData = await getFilmsByGenreDB(judul)
+const getFilmsByStatus = async (judul) => {
+    const filmData = await getFilmsByStatusDB(judul)
     return filmData
 }
 
-export { getFilmDataByJudul, addFilm, getAllFilm, getFilmsByGenre}
+export { getFilmDataByJudul, addFilm, getAllFilm, getFilmsByStatus}
