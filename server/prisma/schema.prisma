@@ -52,6 +52,7 @@ model Film {
   sutradara    String?
   tahun_rilis  Int?
   umur_rating  String?
+  status_film  String?
   createdAt    DateTime @default(now())
 
   Jadwal Jadwal[]

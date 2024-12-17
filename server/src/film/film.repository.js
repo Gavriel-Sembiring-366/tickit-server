@@ -18,7 +18,8 @@ const addFilmDb = async (filmData) => {
             sinopsis: filmData.sinopsis,
             sutradara: filmData.sutradara,
             tahun_rilis: filmData.tahun_rilis,
-            umur_rating: filmData.umur_rating
+            umur_rating: filmData.umur_rating,
+            status_film: filmData.status_film
         }
     })
 
@@ -38,9 +39,23 @@ const findFilmByJudulDb = async (judul) => {
     return films;
 };
 
+
 const getAllFilmDB = async ()=>{
     const films = await prisma.film.findMany();
     return films
+}
+
+const getFilmsByGenreDB = async (genre)=>{
+    const films = await prisma.film.findMany({
+        where: {
+            genre: {
+                contains: genre,
+                mode: "insensitive"
+            }
+        }
+    });
+
+    return films;
 }
 
 export{ 
@@ -48,4 +63,5 @@ export{
     addFilmDb,
     findFilmByJudulDb,
     getAllFilmDB,
+    getFilmsByGenreDB,
 }
