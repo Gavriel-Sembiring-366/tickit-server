@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {addBangkuTersedia, getAllBangkuTersedia} from './bangkuTersedia.service.js';
+import {addBangkuTersedia, getAllBangkuTersedia, getBangkuTersediaDataByJadwal} from './bangkuTersedia.service.js';
 const router = Router();
 
 router.post("/bangkuTersedia", async (req, res) => {
