@@ -73,15 +73,3 @@ model BangkuTersedia{
   @@index([nomor_bangku])
 }
 
-model Booking {
-  booking_id           String    @id @default(uuid()) @db.Uuid
-  user_id              String
-  bangku_tersedia_id   String
-  createdAt            DateTime  @default(now())
-
-  User             User           @relation(fields: [user_id], references: [user_id])
-  BangkuTersedia   BangkuTersedia @relation(fields: [bangku_tersedia_id], references: [bangku_tersedia_id])
-
-  @@index([user_id])
-  @@index([bangku_tersedia_id])
-}
