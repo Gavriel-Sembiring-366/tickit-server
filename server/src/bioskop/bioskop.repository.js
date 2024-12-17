@@ -21,7 +21,7 @@ const addBioskopDb = async (bioskopData) => {
     return bioskop
 }
 
-const findBioskopListByJudulDb = async (nama_bioskop) => {
+const findBioskopListByNamaDb = async (nama_bioskop) => {
     const bioskop_list = await prisma.bioskop.findMany({
         where: {
             nama_bioskop: {
@@ -42,6 +42,6 @@ const getAllBioskopDB = async ()=>{
 export{ 
     findBioskopByIdDb,
     addBioskopDb,
-    findBioskopListByJudulDb,
+    findBioskopListByNamaDb,
     getAllBioskopDB,
 }

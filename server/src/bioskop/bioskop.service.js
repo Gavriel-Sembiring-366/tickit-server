@@ -1,7 +1,7 @@
-import { findBioskopListByJudulDb, addBioskopDb, getAllBioskopDB } from "./bioskop.repository.js";
+import { addBioskopDb, getAllBioskopDB } from "./bioskop.repository.js";
 
-const getBioskopDataByJudul = async (judul) => {
-    const bioskopData = await findBioskopListByJudulDb(judul)
+const getBioskopDataByNama = async (judul) => {
+    const bioskopData = await findBioskopListByNamaDb(judul)
     return bioskopData
 }
 
@@ -13,4 +13,4 @@ const getAllBioskop = async()=>{
     const bioskop_list = await getAllBioskopDB()
     return bioskop_list
 }
-export { getBioskopDataByJudul, addBioskop, getAllBioskop}
+export { getBioskopDataByNama, addBioskop, getAllBioskop}
