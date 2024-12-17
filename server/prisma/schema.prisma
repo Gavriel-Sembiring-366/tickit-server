@@ -25,17 +25,6 @@ model User {
 }
 
 
-model Jadwal {
-  jadwal_id    String   @id @default(uuid()) @db.Uuid
-  film_id      String
-  bioskop_id   String
-  waktu_tayang DateTime
-  createdAt    DateTime @default(now())
-
-  Film      Film     @relation(fields: [film_id], references: [film_id])
-  Bioskop   Bioskop  @relation(fields: [bioskop_id], references: [bioskop_id])
-}
-
 model Film {
   film_id      String   @id @default(uuid()) @db.Uuid
   judul        String?
@@ -61,15 +50,28 @@ model Bioskop {
   Jadwal Jadwal[]
 }
 
-model BangkuTersedia{
-  bangku_tersedia_id    String    @id @default(uuid()) @db.Uuid
-  jadwal_id             String    
-  nomor_bangku          String
-  createdAt             DateTime  @default(now())
 
-  Jadwal      Jadwal     @relation(fields: [jadwal_id], references: [jadwal_id])
+
+model Jadwal {
+  jadwal_id    String           @id @default(uuid()) @db.Uuid
+  film_id      String
+  bioskop_id   String
+  waktu_tayang DateTime
+  createdAt    DateTime         @default(now())
+
+  Film          Film            @relation(fields: [film_id], references: [film_id])
+  Bioskop       Bioskop         @relation(fields: [bioskop_id], references: [bioskop_id])
+  BangkuTersedia BangkuTersedia[] @relation("JadwalToBangkuTersedia") // Added back-reference
+}
+
+model BangkuTersedia {
+  bangku_tersedia_id String         @id @default(uuid()) @db.Uuid
+  jadwal_id          String
+  nomor_bangku       String
+  createdAt          DateTime       @default(now())
+
+  Jadwal             Jadwal         @relation(fields: [jadwal_id], references: [jadwal_id], name: "JadwalToBangkuTersedia")
 
   @@index([jadwal_id])
   @@index([nomor_bangku])
 }
-
