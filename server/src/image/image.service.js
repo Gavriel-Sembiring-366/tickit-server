@@ -53,7 +53,7 @@ export const getImageByName = async (name) => {
 
     // Return the image data
     return {
-        name: id,
+        name: name,
         data: imageBuffer,
         contentType: response.headers.get('content-type'),
     };
