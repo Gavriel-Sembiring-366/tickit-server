@@ -20,13 +20,13 @@ export const getFilmsByStatus = async (status) => {
     return filmData
 }
 
-export const getFilmById = async (film_id) => {
+export const getFilmById = async (filmId) => {
     try {
         const film = await prisma.film.findUnique({
-            where: { film_id: film_id },
+            where: { film_id: filmId },
         });
         return film;
     } catch (err) {
-        throw new Error(`Error fetching film with ID ${film_id}: ${err.message}`);
+        throw new Error(`Error fetching film with ID ${filmId}: ${err.message}`);
     }
 };
