@@ -66,8 +66,8 @@ router.get("/get-film-by-id", async (req, res) => {
             });
         }
 
-        const film = await getFilmById(filmId); // Fetch film data by ID
-        if (!film) {
+        const filmData = await getFilmById(filmId); // Fetch film data by ID
+        if (!filmData) {
             return res.status(404).json({
                 status: 404,
                 message: `No film found with ID: ${filmId}`,
