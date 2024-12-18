@@ -1,34 +1,54 @@
-import { findJadwalListByJudulDb, addJadwalDb, getAllJadwalDB} from "./jadwal.repository.js";
-import prisma from "../config/db.config.js"
-
-const getJadwalDataByJudul = async (judul) => {
-    const jadwalData = await findJadwalListByJudulDb(judul)
-    return jadwalData
-}
+import prisma from "../config/db.config.js";
 
 const addJadwal = async (jadwalData) => {
-    await addJadwalDb(jadwalData)
-}
+    try {
+        const jadwal = await prisma.jadwal.create({
+            data: {
+                film_id: jadwalData.film_id,
+                bioskop_id: jadwalData.bioskop_id,
+                waktu_tayang: jadwalData.waktu_tayang,
+            },
+        });
+        return jadwal;
+    } catch (err) {
+        throw new Error(`Error adding jadwal: ${err.message}`);
+    }
+};
 
-const getAllJadwal = async()=>{
-    const jadwal_list = await getAllJadwalDB()
-    return jadwal_list
-}
+const getAllJadwal = async () => {
+    try {
+        const jadwalData = await prisma.jadwal.findMany();
+        return jadwalData;
+    } catch (err) {
+        throw new Error(`Error fetching all jadwal: ${err.message}`);
+    }
+};
 
-export const getJadwalByFilmId = async(filmId) => {
-
-    try{
+const getJadwalByFilmId = async (filmId) => {
+    try {
         const jadwalData = await prisma.jadwal.findMany({
             where: {
                 film_id: {
                     contains: filmId,
-                    mode: "insensitive"
-                }
-            }
+                    mode: "insensitive",
+                },
+            },
         });
         return jadwalData;
     } catch (err) {
-        throw new Error(`Error jadwal by film ID ${filmId}: ${err.message}`)
-    };
+        throw new Error(`Error fetching jadwal by film ID ${filmId}: ${err.message}`);
+    }
 };
-export { getJadwalDataByJudul, addJadwal, getAllJadwal}
+
+const findJadwalById = async (jadwalId) => {
+    try {
+        const jadwal = await prisma.jadwal.findUnique({
+            where: { jadwal_id: jadwalId },
+        });
+        return jadwal;
+    } catch (err) {
+        throw new Error(`Error fetching jadwal by ID ${jadwalId}: ${err.message}`);
+    }
+};
+
+export { addJadwal, getAllJadwal, getJadwalByFilmId, findJadwalById };
