@@ -1,72 +1,90 @@
 import { Router } from 'express';
-import {addFilm, getAllFilm, getFilmsByStatus} from './film.service.js';
+import { addFilm, getAllFilm, getFilmsByStatus, getFilmById } from './film.service.js'; // Import getFilmById function
+
 const router = Router();
 
+// Add a new film
 router.post("/film", async (req, res) => {
-
     const filmData = req.body;
     try {
         await addFilm(filmData);
-
         res.status(201).json({
             status: 201,
-            message: "film added successfully"
+            message: "Film added successfully",
         });
     } catch (err) {
         return res.status(500).json({
             status: 500,
-            message: err.message
-        })
+            message: err.message,
+        });
     }
-})
+});
 
+// Get all films
 router.get("/get-all-films", async (req, res) => {
     try {
-        const allFilms = await getAllFilm(); // Assuming this function fetches the films from the DB
-
+        const allFilms = await getAllFilm();
         res.status(200).json({
             status: 200,
             message: "Get all films successfully",
-            data: allFilms, // Include the fetched films in the response
+            data: allFilms,
         });
     } catch (err) {
         res.status(500).json({
             status: 500,
-            message: err.message, // Send error message for debugging
+            message: err.message,
         });
     }
 });
 
-
-
+// Get film by status
 router.get("/get-film-by-status", async (req, res) => {
     try {
         const { status } = req.query;
-        const filmData = await getFilmsByStatus(status)
-
+        const filmData = await getFilmsByStatus(status);
         res.status(200).json({
             status: 200,
-            
-            filmData: {
-                id: filmData.film_id,
-                judul: filmData.judul,
-                status_film: filmData.status_film,  
-                durasi: filmData.durasi,
-                sinopsis: filmData.sinopsis,
-                sutradara: filmData.sutradara,
-                tahun_rilis: filmData.tahun_rilis,
-                umur_rating: filmData.umur_rating,
-                status_film: filmData.status_film
-            },
-            message: "Successfully get film data",filmData
+            message: "Successfully retrieved film data",
+            filmData,
         });
     } catch (err) {
         return res.status(401).json({
             status: 401,
-            message: err.message
-        })
+            message: err.message,
+        });
     }
 });
 
+// Get film by ID
+router.get("/get-film-by-id", async (req, res) => {
+    try {
+        const { film_id } = req.query; // Extract film_id from query
+        if (!film_id) {
+            return res.status(400).json({
+                status: 400,
+                message: "Missing film_id in query parameters",
+            });
+        }
 
-export default router
+        const film = await getFilmById(film_id); // Fetch film data by ID
+        if (!film) {
+            return res.status(404).json({
+                status: 404,
+                message: `No film found with ID: ${film_id}`,
+            });
+        }
+
+        res.status(200).json({
+            status: 200,
+            message: "Successfully retrieved film data",
+            film,
+        });
+    } catch (err) {
+        res.status(500).json({
+            status: 500,
+            message: err.message,
+        });
+    }
+});
+
+export default router;
