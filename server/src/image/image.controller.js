@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllImage,getImageById } from './image.service.js';
+import { getAllImage,getImageByName } from './image.service.js';
 const router = Router();
 
 
@@ -21,21 +21,19 @@ router.get("/get-all-image", async (req, res) => {
     }
 });
 
-router.get("/get-image-by-id", async (req, res) => {
+router.get("/get-image-by-name", async (req, res) => {
     try {
-        // Try to extract 'id' from query or body
-        const id = req.query.id || req.body?.id;
+        const name = req.query.name || req.body?.name;
 
-        // Validate the 'id' parameter
-        if (!id) {
+        if (!name) {
             return res.status(400).json({
                 status: 400,
-                message: "Image ID is required",
+                message: "Image Name is required",
             });
         }
 
         // Call the function to fetch the image by ID
-        const image = await getImageById(id);
+        const image = await getImageByName(name);
 
         res.setHeader('Content-Type', image.contentType);
         res.send(image.data); // Send the binary image data directly
@@ -46,5 +44,6 @@ router.get("/get-image-by-id", async (req, res) => {
         });
     }
 });
+
 
 export default router;

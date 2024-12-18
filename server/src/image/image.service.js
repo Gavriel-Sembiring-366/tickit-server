@@ -27,14 +27,14 @@ export const getAllImage = async () => {
     }));
 };
 
-export const getImageById = async (id) => {
+export const getImageByName = async (name) => {
     const bucketName = 'movie_images';
-    if (!id) {
-        throw new Error('Image ID is required');
+    if (!name) {
+        throw new Error('Image Name is required');
     }
 
     const response = await fetch(
-        `${process.env.SUPABASE_URL}/storage/v1/object/public/${bucketName}/${id}`,
+        `${process.env.SUPABASE_URL}/storage/v1/object/public/${bucketName}/${name}`,
         {
             method: 'GET',
             headers: {
@@ -58,3 +58,4 @@ export const getImageById = async (id) => {
         contentType: response.headers.get('content-type'),
     };
 };
+
