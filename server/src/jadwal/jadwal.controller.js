@@ -54,10 +54,10 @@ router.get("/get-jadwal-by-film-id", async (req, res) => {
                 message: `No jadwal found with ID: ${filmId}`,
             });
         }
-        
+
         res.status(200).json({
             status: 200,
-            message: "Get all jadwal successfully",
+            message: "Get all jadwal by film id ${filmId}",
             jadwalData: jadwalData, 
         });
 
