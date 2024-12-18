@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {addJadwal, getAllJadwal} from './jadwal.service.js';
+import {addJadwal, getAllJadwal, getJadwalByFilmId} from './jadwal.service.js';
 const router = Router();
 
 router.post("/jadwal", async (req, res) => {
@@ -27,7 +27,7 @@ router.get("/get-all-jadwal", async (req, res) => {
         res.status(200).json({
             status: 200,
             message: "Get all list_jadwal successfully",
-            data: allJadwals, 
+            jadwalData: allJadwals, 
         });
     } catch (err) {
         res.status(500).json({
@@ -36,5 +36,39 @@ router.get("/get-all-jadwal", async (req, res) => {
         });
     }
 });
+
+router.get("/get-jadwal-by-film-id", async (req, res) => {
+    try {
+        const { filmId } = req.query;
+        if (!filmId) {
+            return res.status(400).json({
+                status: 400,
+                message: "Missing film_id in query parameters",
+            });
+        }
+
+        const jadwalData = await getJadwalByFilmId(); 
+        if (!jadwalData) {
+            return res.status(404).json({
+                status: 404,
+                message: `No jadwal found with ID: ${filmId}`,
+            });
+        }
+        
+        res.status(200).json({
+            status: 200,
+            message: "Get all jadwal successfully",
+            jadwalData: jadwalData, 
+        });
+
+    } catch (err) {
+        res.status(500).json({
+            status: 500,
+            message: err.message, 
+        });
+    }
+});
+
+
 
 export default router

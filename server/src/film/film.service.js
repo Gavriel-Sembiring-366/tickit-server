@@ -23,7 +23,7 @@ export const getFilmsByStatus = async (status) => {
 export const getFilmById = async (filmId) => {
     try {
         const film = await prisma.film.findUnique({
-            where: { film_id: filmId },
+            where: { film_id: filmId }
         });
         return film;
     } catch (err) {
