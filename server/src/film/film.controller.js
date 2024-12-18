@@ -62,7 +62,7 @@ router.get("/get-film-by-id", async (req, res) => {
         if (!filmId) {
             return res.status(400).json({
                 status: 400,
-                message: "Missing idFilm in query parameters",
+                message: "Missing film_id in query parameters",
             });
         }
 
@@ -77,7 +77,7 @@ router.get("/get-film-by-id", async (req, res) => {
         res.status(200).json({
             status: 200,
             message: "Successfully retrieved film data",
-            film,
+            filmData,
         });
     } catch (err) {
         res.status(500).json({
