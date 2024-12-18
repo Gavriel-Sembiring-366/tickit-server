@@ -3,7 +3,6 @@ import { getAllImage,getImageByName } from './image.service.js';
 const router = Router();
 
 
-// Route to get all images
 router.get("/get-all-image", async (req, res) => {
     try {
         const allImages = await getAllImage();
@@ -32,7 +31,6 @@ router.get("/get-image-by-name", async (req, res) => {
             });
         }
 
-        // Call the function to fetch the image by ID
         const image = await getImageByName(name);
 
         res.setHeader('Content-Type', image.contentType);

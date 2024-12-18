@@ -48,6 +48,7 @@ router.get("/get-film-by-status", async (req, res) => {
             status: 200,
             
             filmData: {
+                id: filmData.film_id,
                 judul: filmData.judul,
                 status_film: filmData.status_film,  
                 durasi: filmData.durasi,
@@ -57,7 +58,7 @@ router.get("/get-film-by-status", async (req, res) => {
                 umur_rating: filmData.umur_rating,
                 status_film: filmData.status_film
             },
-            message: "Successfully get user data",filmData
+            message: "Successfully get film data",filmData
         });
     } catch (err) {
         return res.status(401).json({
