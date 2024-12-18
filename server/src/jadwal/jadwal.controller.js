@@ -57,7 +57,7 @@ router.get("/get-jadwal-by-film-id", async (req, res) => {
 
         res.status(200).json({
             status: 200,
-            message: "Get all jadwal by film id ${filmId}",
+            message: `Get all jadwal by film ID: ${filmId}`,
             jadwalData: jadwalData, 
         });
 
