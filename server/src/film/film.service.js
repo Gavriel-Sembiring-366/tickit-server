@@ -1,4 +1,5 @@
 import { findFilmByJudulDb, addFilmDb, getAllFilmDB, getFilmsByStatusDB } from "./film.repository.js";
+import prisma from "../config/db.config.js"
 
 export const getFilmDataByJudul = async (judul) => {
     const filmData = await findFilmByJudulDb(judul)
