@@ -58,19 +58,19 @@ router.get("/get-film-by-status", async (req, res) => {
 // Get film by ID
 router.get("/get-film-by-id", async (req, res) => {
     try {
-        const { film_id } = req.query; // Extract film_id from query
-        if (!film_id) {
+        const { filmId } = req.query; // Extract film_id from query
+        if (!filmId) {
             return res.status(400).json({
                 status: 400,
                 message: "Missing film_id in query parameters",
             });
         }
 
-        const film = await getFilmById(film_id); // Fetch film data by ID
+        const film = await getFilmById(filmId); // Fetch film data by ID
         if (!film) {
             return res.status(404).json({
                 status: 404,
-                message: `No film found with ID: ${film_id}`,
+                message: `No film found with ID: ${filmId}`,
             });
         }
 
