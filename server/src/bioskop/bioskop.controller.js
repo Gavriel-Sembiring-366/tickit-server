@@ -42,7 +42,7 @@ router.get("/bioskop", async (req, res) => {
 });
 
 router.get("/bioskop/get-bioskop-by-id", async (req, res) => {
-    const { bioskopId } = req.params;
+    const { bioskopId } = req.query;
     try {
         const bioskop = await getBioskopById(bioskopId);
         if (!bioskop) {
