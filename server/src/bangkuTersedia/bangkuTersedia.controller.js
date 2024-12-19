@@ -60,7 +60,7 @@ router.get("/get-bangkuTersedia-by-jadwal-id", async (req, res) => {
 
 router.delete("/delete-bangkuTersedia-by-id", async (req, res) => {
     try {
-        const { bangkuTersediaId } = req.body;
+        const { bangkuTersediaId } = req.query;
 
         // Validate if bangku_tersedia_id is provided
         if (!bangkuTersediaId) {
