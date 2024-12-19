@@ -1,16 +1,36 @@
-import { findBangkuTersediaListByJadwalDb, addBangkuTersediaDb, getAllBangkuTersediaDB } from "./bangkuTersedia.repository.js";
+import prisma from "../config/db.config.js";
 
-const getBangkuTersediaDataByJadwal = async (judul) => {
-    const bangkuTersediaData = await findBangkuTersediaListByJadwalDb(judul)
-    return bangkuTersediaData
-}
+const getBangkuTersediaDataByJadwal = async (jadwalId) => {
+  const bangkuTersediaData = await prisma.bangkuTersedia.findMany({
+    where: { jadwal_id: { contains: jadwalId } }
+  });
+  return bangkuTersediaData;
+};
 
 const addBangkuTersedia = async (bangkuTersediaData) => {
-    await addBangkuTersediaDb(bangkuTersediaData)
-}
+  await prisma.bangkuTersedia.create({
+    data: {
+      nama_bangkuTersedia: bangkuTersediaData.nama_bangkuTersedia,
+      alamat: bangkuTersediaData.alamat,
+      kapasitas: bangkuTersediaData.kapasitas
+    }
+  });
+};
 
-const getAllBangkuTersedia = async()=>{
-    const bangkuTersedia_list = await getAllBangkuTersediaDB()
-    return bangkuTersedia_list
-}
-export { getBangkuTersediaDataByJadwal, addBangkuTersedia, getAllBangkuTersedia}
+const getAllBangkuTersedia = async () => {
+  const bangkuTersediaList = await prisma.bangkuTersedia.findMany();
+  return bangkuTersediaList;
+};
+
+const deleteBangkuTersediaById = async (bangkuTersediaId) => {
+  await prisma.bangkuTersedia.delete({
+    where: { bangku_tersedia_id: bangkuTersediaId }
+  });
+};
+
+export {
+  getBangkuTersediaDataByJadwal,
+  addBangkuTersedia,
+  getAllBangkuTersedia,
+  deleteBangkuTersediaById
+};
