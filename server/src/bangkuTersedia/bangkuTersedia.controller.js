@@ -58,7 +58,7 @@ router.get("/get-bangkuTersedia-by-jadwal-id", async (req, res) => {
   }
 });
 
-router.delete("/delete-bangkuTersedia/:id", async (req, res) => {
+router.delete("/delete-bangkuTersedia-by-id", async (req, res) => {
   const { id } = req.params;
   try {
     await deleteBangkuTersediaById(id);
