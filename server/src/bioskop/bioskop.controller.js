@@ -41,19 +41,19 @@ router.get("/bioskop", async (req, res) => {
     }
 });
 
-router.get("/bioskop/:id", async (req, res) => {
-    const { id } = req.params;
+router.get("/bioskop/get-bioskop-by-id", async (req, res) => {
+    const { bioskopId } = req.params;
     try {
-        const bioskop = await getBioskopById(id);
+        const bioskop = await getBioskopById(bioskopId);
         if (!bioskop) {
             return res.status(404).json({
                 status: 404,
-                message: `Bioskop with ID ${id} not found`,
+                message: `Bioskop with ID ${bioskopId} not found`,
             });
         }
         res.status(200).json({
             status: 200,
-            message: `Get bioskop with ID ${id} successfully`,
+            message: `Get bioskop with ID ${bioskopId} successfully`,
             bioskopData: bioskop,
         });
     } catch (err) {
