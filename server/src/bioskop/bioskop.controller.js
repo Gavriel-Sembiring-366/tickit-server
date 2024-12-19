@@ -64,7 +64,7 @@ router.get("/bioskop/get-bioskop-by-id", async (req, res) => {
     }
 });
 
-router.get("/bioskop/nama/:name", async (req, res) => {
+router.get("/bioskop/nama/", async (req, res) => {
     const { name } = req.params;
     try {
         const bioskopList = await findBioskopListByNama(name);

@@ -38,10 +38,10 @@ router.get("/get-all-bangkuTersedia", async (req, res) => {
 });
 
 
-router.get("/get-bangkuTersedia-by-jadwal", async (req, res) => {
+router.get("/get-bangkuTersedia-by-jadwal-id", async (req, res) => {
     try {
-        const { jadwal_id } = req.query;
-        const bangkuTersediaData = await getBangkuTersediaDataByJadwal(jadwal_id)
+        const { jadwalId } = req.query;
+        const bangkuTersediaData = await getBangkuTersediaDataByJadwal(jadwalId)
 
         res.status(200).json({
             status: 200,
@@ -51,7 +51,7 @@ router.get("/get-bangkuTersedia-by-jadwal", async (req, res) => {
                 jadwal_id: bangkuTersediaData.jadwal_id,  
                 nomor_bangku: bangkuTersediaData.nomor_bangku,
             },
-            message: "Successfully get bangkue tersedia data by id ",jadwal_id,bangkuTersediaData
+            message: "Successfully get bangku tersedia data by id ",jadwal_id,bangkuTersediaData
         });
     } catch (err) {
         return res.status(401).json({
