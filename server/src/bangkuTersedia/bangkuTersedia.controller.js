@@ -59,19 +59,34 @@ router.get("/get-bangkuTersedia-by-jadwal-id", async (req, res) => {
 });
 
 router.delete("/delete-bangkuTersedia-by-id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    await deleteBangkuTersediaById(id);
-    res.status(200).json({
-      status: 200,
-      message: `BangkuTersedia with id ${id} deleted successfully`,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      status: 500,
-      message: err.message,
-    });
-  }
+    try {
+        const { bangkuTersediaId } = req.body;
+
+        // Validate if bangku_tersedia_id is provided
+        if (!bangkuTersediaId) {
+            return res.status(400).json({
+                status: 400,
+                message: "bangku_tersedia_id is required",
+            });
+        }
+
+        // Attempt to delete the record
+        const deletedBangkuTersedia = await prisma.bangkuTersedia.delete({
+            where: { bangkuTersediaId },
+        });
+
+        res.status(200).json({
+            status: 200,
+            message: "BangkuTersedia deleted successfully",
+            data: deletedBangkuTersedia,
+        });
+    } catch (err) {
+        res.status(500).json({
+            status: 500,
+            message: err.message,
+        });
+    }
 });
+
 
 export default router;
