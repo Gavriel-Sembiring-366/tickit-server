@@ -25,8 +25,7 @@ const findBangkuTersediaListByJadwalDb = async (jadwal_id) => {
     const bangkuTersedia_list = await prisma.bangkuTersedia.findMany({
         where: {
             jadwal_id: {
-                contains: jadwal_id,
-                mode: "insensitive"
+                contains: jadwal_id
             }
         }
     });
