@@ -23,10 +23,11 @@ const getAllBangkuTersedia = async () => {
 };
 
 const deleteBangkuTersediaById = async (bangkuTersediaId) => {
-  await prisma.bangkuTersedia.delete({
-    where: { bangku_tersedia_id: bangkuTersediaId }
-  });
+    return prisma.bangkuTersedia.delete({
+        where: { bangku_tersedia_id: bangkuTersediaId },
+    });
 };
+
 
 export {
   getBangkuTersediaDataByJadwal,

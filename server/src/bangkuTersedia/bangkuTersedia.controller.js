@@ -69,12 +69,7 @@ router.delete("/delete-bangkuTersedia-by-id", async (req, res) => {
                 message: "bangku_tersedia_id is required",
             });
         }
-
-        // Attempt to delete the record
-        const deletedBangkuTersedia = await prisma.bangkuTersedia.delete({
-            where: { bangkuTersediaId },
-        });
-
+        const deletedBangkuTersedia = await deleteBangkuTersediaById(bangkuTersediaId); 
         res.status(200).json({
             status: 200,
             message: "BangkuTersedia deleted successfully",
