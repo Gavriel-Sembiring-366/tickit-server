@@ -51,7 +51,7 @@ router.get("/get-bangkuTersedia-by-jadwal-id", async (req, res) => {
                 jadwal_id: bangkuTersediaData.jadwal_id,  
                 nomor_bangku: bangkuTersediaData.nomor_bangku,
             },
-            message: "Successfully get bangku tersedia data by id ",jadwalId
+            message: "Successfully get bangku tersedia data by id ",jadwalId,bangkuTersediaData
         });
     } catch (err) {
         return res.status(401).json({
