@@ -15,7 +15,7 @@ router.post("/bioskop", async (req, res) => {
         res.status(201).json({
             status: 201,
             message: "Bioskop added successfully",
-            data: addedBioskop,
+            bioskopData: addedBioskop,
         });
     } catch (err) {
         res.status(500).json({
@@ -31,7 +31,7 @@ router.get("/bioskop", async (req, res) => {
         res.status(200).json({
             status: 200,
             message: "Get all bioskop successfully",
-            data: allBioskop,
+            bioskopData: allBioskop,
         });
     } catch (err) {
         res.status(500).json({
@@ -54,7 +54,7 @@ router.get("/bioskop/:id", async (req, res) => {
         res.status(200).json({
             status: 200,
             message: `Get bioskop with ID ${id} successfully`,
-            data: bioskop,
+            bioskopData: bioskop,
         });
     } catch (err) {
         res.status(500).json({
@@ -71,7 +71,7 @@ router.get("/bioskop/nama/:name", async (req, res) => {
         res.status(200).json({
             status: 200,
             message: `Get bioskop by name '${name}' successfully`,
-            data: bioskopList,
+            bioskopData: bioskopList,
         });
     } catch (err) {
         res.status(500).json({
